@@ -15,7 +15,21 @@ class App extends React.Component {
     }
   }
 
+ 
+onFindPetsClick = () => {
+
+
+  fetch('/api/pets')
+  .then(resp => resp.json()) 
+  .then(data => {
+      this.setState({pets: data})  
+  }) 
+
+}
+
+
   render() {
+      
     return (
       <div className="ui container">
         <header>
@@ -24,7 +38,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters />
+              <Filters onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
               <PetBrowser />
